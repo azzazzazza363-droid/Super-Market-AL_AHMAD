@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوبر ماركت الأحمد</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 10px; background-color: #f9f9f9; }
+        .banner { background: #2c3e50; color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 20px; }
+        h2.category { color: #2c3e50; border-right: 5px solid #27ae60; padding-right: 10px; margin-top: 30px; font-size: 1.2em; }
+        .product { background: white; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .cart-btn { padding: 5px 12px; background: #27ae60; color: white; border: none; cursor: pointer; border-radius: 5px; font-weight: bold; }
+        #order-summary { position: sticky; bottom: 0; background: #2c3e50; color: white; padding: 15px; text-align: center; border-radius: 10px 10px 0 0; z-index: 100; }
+    </style>
+</head>
+<body>
+
+    <div class="banner">
+        <h2>سوبر ماركت الأحمد</h2>
+        <p>أسعار واضحة.. اختر أغراضك واترك الباقي علينا.</p>
+    </div>
+
+    <h2 class="category">الأرز والحبوب</h2>
+    <div class="product">أرز سيدي هشام إسباني (240) <button class="cart-btn" onclick="addToCart('أرز سيدي هشام إسباني')">+</button></div>
+    <div class="product">أرز سيدي هشام مصري (170) <button class="cart-btn" onclick="addToCart('أرز سيدي هشام مصري')">+</button></div>
+    <div class="product">أرز سيدي هشام كريمي (230) <button class="cart-btn" onclick="addToCart('أرز سيدي هشام كريمي')">+</button></div>
+    <div class="product">أرز بيوت الشام مصري (140) <button class="cart-btn" onclick="addToCart('أرز بيوت الشام مصري')">+</button></div>
+    <div class="product">أرز محمود (260) <button class="cart-btn" onclick="addToCart('أرز محمود')">+</button></div>
+    <div class="product">أرز الشعلان حبة طويلة (270) <button class="cart-btn" onclick="addToCart('أرز الشعلان')">+</button></div>
+    <div class="product">أرز الأجداد (250) <button class="cart-btn" onclick="addToCart('أرز الأجداد')">+</button></div>
+    <div class="product">عدس/مجروش (180) <button class="cart-btn" onclick="addToCart('عدس')">+</button></div>
+    <div class="product">برغل ناعم/خشن (120) <button class="cart-btn" onclick="addToCart('برغل')">+</button></div>
+
+    <h2 class="category">المعلبات والزيوت</h2>
+    <div class="product">طون سيدي هشام (160) <button class="cart-btn" onclick="addToCart('طون سيدي هشام')">+</button></div>
+    <div class="product">طون الأحلام (120) <button class="cart-btn" onclick="addToCart('طون الأحلام')">+</button></div>
+    <div class="product">طون ليو (150) <button class="cart-btn" onclick="addToCart('طون ليو')">+</button></div>
+    <div class="product">مرتديلا حنا بوري (340) <button class="cart-btn" onclick="addToCart('مرتديلا حنا بوري')">+</button></div>
+    <div class="product">مرتديلا حنا وسط (170) <button class="cart-btn" onclick="addToCart('مرتديلا حنا وسط')">+</button></div>
+    <div class="product">زيت دوار الشمس (280) <button class="cart-btn" onclick="addToCart('زيت دوار الشمس')">+</button></div>
+
+    <h2 class="category">المشروبات</h2>
+    <div class="product">بيبسي لتر (100) <button class="cart-btn" onclick="addToCart('بيبسي لتر')">+</button></div>
+    <div class="product">بيبسي عائلي (170) <button class="cart-btn" onclick="addToCart('بيبسي عائلي')">+</button></div>
+    <div class="product">راني (80) <button class="cart-btn" onclick="addToCart('راني')">+</button></div>
+    <div class="product">كوبرا (50) <button class="cart-btn" onclick="addToCart('كوبرا')">+</button></div>
+
+    <h2 class="category">البسكوت والشيبس</h2>
+    <div class="product">بسكوت واو لو ماريو (60) <button class="cart-btn" onclick="addToCart('واو لو ماريو')">+</button></div>
+    <div class="product">بسكوت دونيستا (70) <button class="cart-btn" onclick="addToCart('دونيستا')">+</button></div>
+    <div class="product">دارنيتو كبير (50) <button class="cart-btn" onclick="addToCart('دارنيتو كبير')">+</button></div>
+    <div class="product">دارنيتو صغير (30) <button class="cart-btn" onclick="addToCart('دارنيتو صغير')">+</button></div>
+    <div class="product">سيتوس (170) <button class="cart-btn" onclick="addToCart('سيتوس')">+</button></div>
+
+    <div id="order-summary">
+        <p>سلتك: <span id="cart-items">فارغة</span></p>
+        <button onclick="sendOrder()" style="padding: 10px 20px; background: #27ae60; border: none; color: white; border-radius: 5px; cursor: pointer;">إرسال الطلب عبر واتساب</button>
+    </div>
+
+    <script>
+        let cart = [];
+        function addToCart(product) {
+            cart.push(product);
+            document.getElementById('cart-items').innerText = cart.join('، ');
+        }
+        function sendOrder() {
+            if (cart.length === 0) { alert('السلة فارغة!'); return; }
+            let message = "مرحباً، أريد طلب: " + cart.join('، ');
+            window.location.href = "https://wa.me/963952307348?text=" + encodeURIComponent(message);
+        }
+    </script>
+</body>
+</html>
